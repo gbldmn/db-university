@@ -1,0 +1,34 @@
+selezionare tutti gli insegnanti 
+
+SELECT * 
+FROM teachers;
+
+
+selezionare tutti i referenti per ogni dipartimento 
+
+
+
+
+selezionare tutti i studenti il cui nome inizia per E 
+
+SELECT *
+FROM students
+WHERE name LIKE 'E%'
+
+
+
+selezionare tutti i studenti che si sono iscritti nel 2021
+
+SELECT * 
+FROM `students`  
+WHERE YEAR(enrolment_date) = 2021;
+
+
+selezionare tutti i corsi che non hanno un sito web 
+
+SELECT *
+FROM `courses`
+WHERE website IS NULL;
+
+
+
