@@ -1,15 +1,17 @@
-selezionare tutti gli insegnanti 
+1. selezionare tutti gli insegnanti 
 
 SELECT * 
 FROM teachers;
 
 
-selezionare tutti i referenti per ogni dipartimento 
+2. selezionare tutti i referenti per ogni dipartimento 
+
+SELECT head_of_department 
+FROM `departments`;
 
 
 
-
-selezionare tutti i studenti il cui nome inizia per E 
+3. selezionare tutti i studenti il cui nome inizia per E 
 
 SELECT *
 FROM students
@@ -17,18 +19,70 @@ WHERE name LIKE 'E%'
 
 
 
-selezionare tutti i studenti che si sono iscritti nel 2021
+4. selezionare tutti i studenti che si sono iscritti nel 2021
 
 SELECT * 
 FROM `students`  
 WHERE YEAR(enrolment_date) = 2021;
 
 
-selezionare tutti i corsi che non hanno un sito web 
+5. selezionare tutti i corsi che non hanno un sito web 
 
 SELECT *
 FROM `courses`
 WHERE website IS NULL;
 
 
+6. Selezionare tutti gli insegnanti che hanno un numero di telefono
 
+SELECT *
+FROM `teachers`
+WHERE phone IS NOT NULL;
+
+
+7. Selezionare tutti gli appelli d'esame dei mesi di giugno e luglio 2020 
+
+SELECT * 
+FROM exams
+WHERE MONTH(date) IN (6, 7) AND YEAR(date) = 2020;
+
+
+
+8. Qual è il numero totale degli studenti iscritti?
+
+SELECT COUNT(*) AS total_students
+FROM students;
+
+
+
+
+
+
+1. Contare i corsi raggruppati per cfu
+
+SELECT cfu, COUNT(*) AS count
+FROM courses
+GROUP BY cfu;
+
+
+2. Contare gli studenti raggruppati per anno di nascita
+
+SELECT YEAR(date_of_birth) AS date_of_birth, COUNT(*) AS count
+FROM students
+GROUP BY YEAR(date_of_birth);
+
+
+3. Selezionare il voto più basso dato ad ogni appello d'esame
+
+SELECT vote, MIN(vote) AS voto_minimo
+FROM exam_student
+GROUP BY vote;
+
+
+
+4. Contare gli appelli d'esame del mese di luglio raggruppati per giorno
+
+SELECT DAY(date) AS giorno, COUNT(*) AS conteggio
+FROM exams
+WHERE MONTH(date) = 7
+GROUP BY DAY(date)
